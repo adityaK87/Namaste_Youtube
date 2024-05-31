@@ -3,13 +3,18 @@ import React from "react";
 import hamburger from "../assets/hamburger.png";
 import searchLogo from "../assets/magnifying-glass.png";
 import user from "../assets/user.png";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "../utils/slices/appSlice";
 
 const Header = () => {
+	const dispatch = useDispatch();
+
 	return (
 		<div className="p-4 flex justify-between shadow-lg">
 			{/*Left nav  */}
 			<div className="flex">
 				<img
+					onClick={() => dispatch(toggleSidebar())}
 					className="px-2 h-8 cursor-pointer"
 					src={hamburger}
 					alt="Hamburger"
