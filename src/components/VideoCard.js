@@ -22,4 +22,14 @@ const VideoCard = ({ info }) => {
 	);
 };
 
+export const withBorderComponent = (Component) => {
+	return ({ info }) => {
+		return (
+			<div className="border border-red-500 ">
+				<Component info={info} />
+			</div>
+		);
+	};
+};
+
 export default VideoCard;
