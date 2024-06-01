@@ -3,23 +3,32 @@ import React, { useEffect, useState } from "react";
 import hamburger from "../assets/hamburger.png";
 import searchLogo from "../assets/magnifying-glass.png";
 import user from "../assets/user.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../utils/slices/appSlice";
 import { YOUTUBE_SEARCH_SUGGESTIONS_URL } from "../utils/constants";
+import { cacheResults } from "../utils/slices/searchSlice";
 
 const Header = () => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [suggestions, searchSuggestions] = useState([]);
+	const [suggestions, setSuggestions] = useState([]);
 	const [showSuggestions, setShowSuggestions] = useState(false);
 	const dispatch = useDispatch();
 
+	const searchCache = useSelector((state) => state.search);
+
 	useEffect(() => {
+		//Check wheather the results are present in the cache
+
 		//DEBOUNCING
 		// API Call
 		// make an API call after every key press
 		//but if the difference between 2 key press is < 200ms the DECLINE the Api call
 		const timerId = setTimeout(() => {
-			getSearchSuggestions();
+			if (searchCache[searchQuery]) {
+				setSuggestions(searchCache[searchQuery]);
+			} else {
+				getSearchSuggestions();
+			}
 		}, 200);
 
 		return () => {
@@ -30,7 +39,14 @@ const Header = () => {
 	const getSearchSuggestions = async () => {
 		const data = await fetch(YOUTUBE_SEARCH_SUGGESTIONS_URL + searchQuery);
 		const json = await data.json();
-		searchSuggestions(json[1]);
+		setSuggestions(json[1]);
+
+		//add results to cache
+		dispatch(
+			cacheResults({
+				[searchQuery]: json[1],
+			})
+		);
 	};
 
 	return (
