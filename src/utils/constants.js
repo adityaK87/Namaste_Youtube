@@ -6,3 +6,35 @@ export const YOUTUBE_VIDEOS_API_URL =
 
 export const YOUTUBE_SEARCH_SUGGESTIONS_URL =
 	"http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const COMMENT_DATA = [
+	{
+		name: "Aditya",
+		text: "lorem ipsum dolor sit amet, con",
+		replies: [
+			{
+				name: "Aditya",
+				text: "lorem ipsum dolor sit amet, con",
+				replies: [],
+			},
+			{
+				name: "Aditya",
+				text: "lorem ipsum dolor sit amet, con",
+				replies: [
+					{
+						name: "Aditya",
+						text: "lorem ipsum dolor sit amet, con",
+						replies: [],
+					},
+				],
+			},
+		],
+	},
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+	{ name: "Aditya", text: "lorem ipsum dolor sit amet, con", replies: [] },
+];
