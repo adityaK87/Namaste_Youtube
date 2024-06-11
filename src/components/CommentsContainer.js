@@ -17,8 +17,8 @@ const Comment = ({ data }) => {
 
 const CommentsList = ({ comments }) =>
 	comments.map((comment, index) => (
-		<div>
-			<Comment data={comment} key={index} />
+		<div key={index}>
+			<Comment data={comment} />
 			<div className="pl-5 border border-l-black ml-5">
 				{/* Recursion : calling itself inside his body */}
 				<CommentsList comments={comment.replies} />
